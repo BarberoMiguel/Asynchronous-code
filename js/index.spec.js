@@ -29,13 +29,19 @@ let randomizeArrayOrder = (array) => {
     return (array);
 }
 
+async function getNumberOfBreeds(){
+    return await fetch('https://dog.ceo/api/breeds/list/all')
+    .then(res=>res.json())
+    .then(json=>Object.keys(json.message).length);
+}
+
 
 describe('Ejercicios asincronía', function () {
 
 
     describe('Ejercicio 1.- Declara una funcion getAllBreeds que devuelva todas las razas de perro', function () {
         it('La función devuelve todas las razas de perro', async function () {
-            expect((await getAllBreeds()).length).toEqual(98);
+            expect((await getAllBreeds()).length).toEqual(await getNumberOfBreeds());
             expect(await getAllBreeds()).toContain('affenpinscher', 'african', 'airedale', 'akita', 'appenzeller', 'australian', 'basenji', 'beagle', 'bluetick', 'borzoi', 'bouvier', 'boxer', 'brabancon', 'briard', 'buhund', 'bulldog', 'bullterrier', 'cattledog', 'chihuahua', 'chow', 'clumber', 'cockapoo', 'collie', 'coonhound', 'corgi', 'cotondetulear', 'dachshund', 'dalmatian', 'dane', 'deerhound', 'dhole', 'dingo', 'doberman', 'elkhound', 'entlebucher', 'eskimo', 'finnish', 'frise', 'germanshepherd', 'greyhound', 'groenendael', 'havanese', 'hound', 'husky', 'keeshond', 'kelpie', 'komondor', 'kuvasz', 'labradoodle', 'labrador', 'leonberg', 'lhasa', 'malamute', 'malinois', 'maltese', 'mastiff', 'mexicanhairless', 'mix', 'mountain', 'newfoundland', 'otterhound', 'ovcharka', 'papillon', 'pekinese', 'pembroke', 'pinscher', 'pitbull', 'pointer', 'pomeranian', 'poodle', 'pug', 'puggle', 'pyrenees', 'redbone', 'retriever', 'ridgeback', 'rottweiler', 'saluki', 'samoyed', 'schipperke', 'schnauzer', 'segugio', 'setter', 'sharpei', 'sheepdog', 'shiba', 'shihtzu', 'spaniel', 'spitz', 'springer', 'stbernard', 'terrier', 'tervuren', 'vizsla', 'waterdog', 'weimaraner', 'whippet', 'wolfhound')
         })
     })
